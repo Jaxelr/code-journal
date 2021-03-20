@@ -1,4 +1,6 @@
 # Dotnet
 
 - Basic sql server [connection string](connstring.md) configs
-- implementing [IlMerge](ilmerge.md) on Net fx 4.X
+- Implementing [IlMerge](ilmerge.md) on Net fx 4.X
+- Reading [embedded resources](embedded.md) from an assembly
+- Dotnet Cli restart [dotnet new](dotnet-cli.md) packages
