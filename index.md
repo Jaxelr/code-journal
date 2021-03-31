@@ -11,3 +11,4 @@ layout: default
 - [Command Line](content/cmd/index.md)
 - [CI](content/ci/index.md)
 - [Npm](content/npm/index.md)
+- [SqlServer](content/sqlserver/index.md)
