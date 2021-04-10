@@ -2,7 +2,7 @@
 
 Configure the env variable either by ui:
 
-![Appveyor-UI](appveyor-ui.png)
+![Appveyor-UI](images/appveyor-ui.png)
 
 This is usually done on settings environment per project
 
