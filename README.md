@@ -1,5 +1,7 @@
-# Code Journal
+# Code Journal 📖
 
-Entries for various tasks related to programming that i want to keep track of in text form, while also having available to all my devices
+Entries for tasks related to programming that i keep track of in text form 💻, allowing me to access them anywhere. 
 
-Start navigation [here](index.md)
+Navigation starts [here](index.md)
+
+Usually combined with my [Linqpad-Snippets](https://github.com/Jaxelr/Linqpad-Snippets) repository, which contains snippets i wanna keep track of.
