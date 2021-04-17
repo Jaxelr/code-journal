@@ -1,7 +1,3 @@
----
-layout: default
----
-
 # Sections
 
 - [Tools](content/tools/index.md)
