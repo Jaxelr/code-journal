@@ -28,7 +28,7 @@ services:
       POSTGRES_PASSWORD: 'postgres'
       POSTGRES_DB: 'postgres'
 
-    # Copy files from dbinit into the image so that they will be run on boot
+    # Optional: Copy files from initdb path into the image so that they will be run on boot
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
 ```
