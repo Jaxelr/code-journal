@@ -8,6 +8,28 @@ From the cmd line run:
 
 _Optionally_ you can set a password, by default since this is local work i do not
 
+The definition for usage with docker compose is:
+
+```yml
+version: '3'
+services:
+
+  mysql:
+    # For more details on configuring the Mysql Docker image, see:
+    #   https://hub.docker.com/_/mysql
+    image: mysql/mysql-server:latest
+
+    # Expose the default Mysql port on localhost
+    ports:
+    - "3306:3306"
+    container_name: mycutesql
+
+    environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_ROOT_HOST=%
+    - MYSQL_DATABASE=test
+```
+
 To find the ip being used you can run one of the following commands:
 
 `docker inspect mycutesql | grep IPAddress`
