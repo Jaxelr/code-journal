@@ -1,8 +1,6 @@
 # Running mysql on docker
 
-Make sure docker desktop is running.
-
-From the cmd line run:
+Make sure docker desktop is running, from the cmd line run:
 
 `docker run --name=mycutesql -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -e MYSQL_DATABASE=test -e MYSQL_ROOT_HOST=% -d mysql`
 
