@@ -4,4 +4,5 @@
 - Running [Memcached](memcached.md)
 - Running [Couchbase](couchbase.md)
 - Running [Postgres](postgres.md)
-- Runnin [MySql](mysql.md)
+- Running [MySql](mysql.md)
+- Running [SqlServer](sqlserver.md)
