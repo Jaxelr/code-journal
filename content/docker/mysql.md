@@ -23,9 +23,9 @@ services:
     container_name: mycutesql
 
     environment:
-    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    - MYSQL_ROOT_HOST=%
-    - MYSQL_DATABASE=test
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: 'test'
 ```
 
 To find the ip being used you can run one of the following commands:

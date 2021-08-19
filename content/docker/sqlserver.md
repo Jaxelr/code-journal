@@ -2,7 +2,7 @@
 
 Make sure docker desktop is running, from the cmd line run:
 
-`docker run --name sql_2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=1Secure*Password1" -e "MSSQL_PID=Enterprise" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest`
+`docker run --name sqlserver -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=1Secure*Password1" -e "MSSQL_PID=Enterprise" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest`
 
 The definition usage with docker compose is:
 
@@ -18,12 +18,12 @@ services:
     # Expose the default Mysql port on localhost
     ports:
     - "1433:1433"
-    container_name: sql_2019
+    container_name: sqlserver
 
     environment:
-    - ACCEPT_EULA=Y
-    - SA_PASSWORD=1Secure*Password1
-    - MSSQL_PID=Enterprise
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: '1Secure*Password1'
+      MSSQL_PID: 'Enterprise'
 ```
 
 To connect to sql instance from command line:
