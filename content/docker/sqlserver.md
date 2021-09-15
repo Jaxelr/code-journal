@@ -33,3 +33,16 @@ To connect to sql instance from command line:
 To check if the container is accepting connections you can check the logs:
 
 `docker logs sql_2019 | tail -n 10`
+
+
+## Known issues
+
+While working with the Appveyor CI i ran into the following error:
+
+`sqlservr: This program requires a machine with at least 2000 megabytes of memory.`
+
+This is a known issue on the [mssql-docker repo](https://github.com/Microsoft/mssql-docker/issues/293)
+
+As a workaround, i tested the image using the following [repository](https://github.com/justin2004/mssql_server_tiny) and it works as intended.
+
+As another workaround, use the github ci, since it does not have the same limitation.
