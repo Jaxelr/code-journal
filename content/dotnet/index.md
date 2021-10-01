@@ -5,3 +5,4 @@
 - Reading [embedded resources](embedded.md) from an assembly
 - Dotnet Cli restart [dotnet new](dotnet-cli.md) packages
 - Clean [nuget caches](nuget-cache.md)
+- Add [Readme file to Package](readme.md)
