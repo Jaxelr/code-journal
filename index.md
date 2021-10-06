@@ -9,3 +9,4 @@
 - [Git](content/git/index.md)
 - [Npm](content/npm/index.md)
 - [SqlServer](content/sqlserver/index.md)
+- [FSharp](content/fsharp/index.md)
