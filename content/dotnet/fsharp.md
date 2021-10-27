@@ -62,3 +62,59 @@ let e, f, g, h = 4.14F, 4.14, 0.7833M, 9999I
 // [val g: decimal = 0.7833M]
 // [val h: System.Numerics.BigInteger = 9999]
 ```
+
+## Format
+
+```fsharp
+printfn "Hello, World"
+printfn $"The time is {System.DateTime.Now}"
+
+///With formatting
+let data = [1..10]
+
+printfn $"The numbers %d{1} to %d{10} are %A{data}"
+
+///Or
+
+printfn "The numbers %d to %d are %A" 1 10 data
+```
+
+## Loops
+```fsharp
+///For loops
+
+let list1 = [1; 5; 100; 450; 788]
+
+for i in list1 do
+    printf "%d" i
+
+let seq1 = seq { for i in 1 .. 10 -> (i, i * i) }
+
+for (a, asqr) in seq1 do
+    printfn "%d squared is %d" a asqr
+
+for i in 1 .. 10 do
+    printf "%d " i
+
+for i = 10 downto 1 do
+    printf "%i " i
+
+for i in 1 .. 2 .. 10 do
+    printf "%d " i
+
+for c in 'a' .. 'z' do
+    printf "%c " c
+
+// Using of a wildcard character (_)
+// when the element is not needed in the loop.
+let mutable count = 0
+
+for _ in list1 do
+    count <- count + 1
+
+///While loops
+let mutable mutVal = 0
+while mutVal < 10 do
+    mutVal <- mutVal + 1
+```
+
