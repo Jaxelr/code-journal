@@ -117,4 +117,27 @@ let mutable mutVal = 0
 while mutVal < 10 do
     mutVal <- mutVal + 1
 ```
+## Functions
+
+```fsharp
+///Define functions with the `let` keyword
+
+let pi () = 3.14159 // func with no arguments
+pi ()               // use () to call the func
+
+let negate x = x * -1 
+let square x = x * x 
+let print x = printfn $"The number is: %d{x}"
+
+let squareNegateThenPrint x = 
+    print (negate (square x)) 
+
+///Pipe operator |> is used to chain funcs
+let squareNegateThenPrint x = 
+    x |> square |> negate |> print
+
+///Composition operator >> is used to compose funcs
+let squareNegateThenPrint = 
+    square >> negate >> print
+```
 
