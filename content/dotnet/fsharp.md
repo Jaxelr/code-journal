@@ -141,3 +141,142 @@ let squareNegateThenPrint =
     square >> negate >> print
 ```
 
+## Pattern Matching
+
+```fsharp
+///Using match keyword
+let rec fib n =
+    match n with
+    | 0 -> 0
+    | 1 -> 1
+    | _ -> fib (n - 1) + fib (n - 2)
+
+///Use when to create filters
+let sign x = 
+    match x with
+    | 0 -> 0
+    | x when x < 0 -> -1
+    | x -> 1
+
+///Use func
+let rec fib2 = function
+    | 0 -> 0
+    | 1 -> 1
+    | n -> fib2 (n - 1) + fib2 (n - 2)
+```
+
+## Collections
+
+### Lists
+
+```fsharp
+/// Lists use square brackets and `;` delimiter
+let list1 = ["a"; "b"]
+
+// :: is prepending
+let list2 = "c" :: list1
+
+// @ is concat    
+let list3 = list1 @ list2   
+
+// Recursion on list using (::) operator
+let rec sum list = 
+    match list with
+    | [] -> 0
+    | x :: xs -> x + sum xs
+
+//Generating lists
+[ 1; 3; 5; 7; 9 ]
+[ 1..2..9 ]
+[ for i in 0..4 -> 2 * i + 1 ]
+List.init 5 (fun i -> 2 * i + 1)
+```
+### Arrays
+
+```fsharp
+/// Arrays use square brackets with bar
+let array1 = [| "a"; "b" |]
+
+// Indexed access using dot
+let first1 = array1.[0]   
+let first2 = array1[0]    // F# 6
+
+//Generating arrays
+[| 1; 3; 5; 7; 9 |]
+[| 1..2..9 |]
+[| for i in 0..4 -> 2 * i + 1 |]
+Array.init 5 (fun i -> 2 * i + 1)
+```
+
+### Sequences
+
+```fsharp
+/// Sequences can use yield and contain subsequences
+seq {
+    // "yield" adds one element
+    yield 1
+    yield 2
+
+    // "yield!" adds a whole subsequence
+    yield! [5..10]
+}
+
+// Sequences can use yield and contain subsequences
+seq {
+    1
+    2
+    yield! [5..10]
+}
+```
+
+### Dictionaries
+
+```fsharp
+open System.Collections.Generic
+
+let inventory = Dictionary<string, float>()
+
+//Add key/values
+inventory.Add("Apples", 0.33)
+inventory.Add("Oranges", 0.5)
+
+//Remove key/values
+inventory.Remove "Oranges"
+
+// Read the value. If not exists - this throws.
+let bananas1 = inventory.["Apples"]
+let bananas2 = inventory["Apples"]   // F# 6
+
+// Generic type inference with Dictionary
+let inventory = Dictionary<_,_>()   // or let inventory = Dictionary()
+
+inventory.Add("Apples", 0.33)
+
+//Immutable Dictionaries
+let inventory : IDictionary<string, float> =
+    ["Apples", 0.33; "Oranges", 0.23; "Bananas", 0.45]
+    |> dict
+
+let bananas = inventory.["Bananas"]     // 0.45
+let bananas2 = inventory["Bananas"]     // 0.45, F# 6
+
+inventory.Add("Pineapples", 0.85)       // System.NotSupportedException
+inventory.Remove("Bananas")             // System.NotSupportedException
+```
+
+### Map
+
+```fsharp
+///Map
+let inventory =
+    Map ["Apples", 0.33; "Oranges", 0.23; "Bananas", 0.45]
+
+let apples = inventory.["Apples"]
+let pineapples = inventory.["Pineapples"]   // KeyNotFoundException
+
+let newInventory =              // Creates new Map
+    inventory
+    |> Map.add "Pineapples" 0.87
+    |> Map.remove "Apples"
+```
+
