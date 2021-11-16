@@ -280,3 +280,44 @@ let newInventory =              // Creates new Map
     |> Map.remove "Apples"
 ```
 
+## Tuples and Records
+
+### Tuples
+
+```fsharp
+// Tuple construction
+let x = (1, "Hello")
+
+// Triple
+let y = ("one", "two", "three") 
+
+// Tuple deconstruction / pattern
+let (a', b') = x
+
+/// Get the first and second elements
+let c' = fst (1, 2)
+let d' = snd (1, 2)
+  
+let print' tuple =
+    match tuple with
+    | (a, b) -> printfn "Pair %A %A" a b
+```
+
+### Records
+
+```fsharp
+// Declare a record type
+type Person = { Name : string; Age : int }
+
+// Create a value via record expression
+let paul = { Name = "Paul"; Age = 28 }
+
+// 'Copy and update' record expression
+let paulsTwin = { paul with Name = "Jim" }
+
+/// Records are immutable and have pattern matching support
+let isPaul person =
+    match person with
+    | { Name = "Paul" } -> true
+    | _ -> false
+```
