@@ -321,3 +321,23 @@ let isPaul person =
     | { Name = "Paul" } -> true
     | _ -> false
 ```
+
+## Recursive Functions
+
+```fsharp
+///The `rec` keyword is used along with the `let` 
+///keyword to define a recursive function:
+
+let rec fact x =
+    if x < 1 then 1
+    else x * fact (x - 1)
+
+///use `and` to call mutually recursive functions
+let rec even x =
+   if x = 0 then true 
+   else odd (x - 1)
+
+and odd x =
+   if x = 0 then false
+   else even (x - 1)
+```
