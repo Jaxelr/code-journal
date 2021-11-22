@@ -341,3 +341,64 @@ and odd x =
    if x = 0 then false
    else even (x - 1)
 ```
+
+## Discriminated Unions
+
+```fsharp
+type Tree<'T> =
+    | Node of Tree<'T> * 'T * Tree<'T>
+    | Leaf
+
+
+let rec depth input =
+    match input with
+    | Node(l, _, r) -> 1 + max (depth l) (depth r)
+    | Leaf -> 0
+
+///Option<T>
+let optionPatternMatch input =
+    match input with
+    | Some i -> printfn "input is an int=%d" i
+    | None -> printfn "input is missing"
+
+///Single case dus are type safe abstractions 
+///that support pattern matching
+type OrderId = Order of string
+
+// Create a DU value
+let orderId = Order "12"
+
+// Use pattern matching to deconstruct single-case DU
+let (Order id) = orderId
+```
+
+## Exceptions
+
+```fsharp
+let divideFailwith x y =
+    if y = 0 then 
+        failwith "Divisor cannot be zero."  ///Throws type `Exception`
+        else x / y 
+
+///try/with
+let divide x y =
+    try
+        Some (x / y)
+    with :? System.DivideByZeroException -> 
+        printfn "Division by zero!"
+        None
+
+///try/with/finally
+exception InnerError of string
+exception OuterError of string
+  
+let handleErrors x y =
+   try 
+       try 
+           if x = y then raise (InnerError("inner"))
+           else raise (OuterError("outer"))
+       with InnerError(str) -> 
+          printfn "Error1 %s" str
+   finally
+       printfn "Always print this."
+```
