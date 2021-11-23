@@ -402,3 +402,54 @@ let handleErrors x y =
    finally
        printfn "Always print this."
 ```
+
+## Classes and Interfaces
+
+```fsharp
+///Defining a class
+type Vector(x: float, y: float) =
+    let mag = sqrt(x * x + y * y)               // (1) - local let binding
+
+    member this.X = x                           // (2) property
+    member this.Y = y                           // (2) property
+    member this.Mag = mag                       // (2) property
+
+    member this.Scale(s) =                       // (3) method
+        Vector(x * s, y * s)
+
+    static member (+) (a : Vector, b : Vector) = // (4) static method
+        Vector(a.X + b.X, a.Y + b.Y)
+
+///Calling a base class from a derived one
+type Animal() =
+    member _.Rest() = ()
+           
+type Dog() =
+    inherit Animal()
+    member _.Run() =
+        base.Rest()
+
+///Defining an interface and implementation
+type IVector =
+    abstract Scale : float -> IVector
+
+type Vector(x, y) =
+    interface IVector with
+        member __.Scale(s) =
+            Vector(x * s, y * s) :> IVector
+            
+    member __.X = x
+    
+    member __.Y = y
+
+///Another alternative using object expressions
+type ICustomer =
+    abstract Name : string
+    abstract Age : int
+
+let createCustomer name age =
+    { new ICustomer with
+        member __.Name = name
+        member __.Age = age }
+```
+
