@@ -453,3 +453,26 @@ let createCustomer name age =
         member __.Age = age }
 ```
 
+## Active Patterns
+
+```fsharp
+///Complete active pattern
+let (|Even|Odd|) i = 
+  if i % 2 = 0 then Even else Odd
+
+let testNumber i =
+    match i with
+    | Even -> printfn "%d is even" i
+    | Odd -> printfn "%d is odd" i
+
+///Parameterized, partial active pattern
+let (|DivisibleBy|_|) divisor n = 
+  if n % divisor = 0 then Some DivisibleBy else None
+
+let fizzBuzz input =
+    match input with
+    | DivisibleBy 3 & DivisibleBy 5 -> "FizzBuzz" 
+    | DivisibleBy 3 -> "Fizz" 
+    | DivisibleBy 5 -> "Buzz" 
+    | i -> string i
+```
