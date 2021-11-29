@@ -6,3 +6,4 @@
 - Running [Postgres](postgres.md)
 - Running [MySql](mysql.md)
 - Running [SqlServer](sqlserver.md)
+- Fix [Ports not available](ports.md) on windows
