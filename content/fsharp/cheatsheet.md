@@ -476,3 +476,55 @@ let fizzBuzz input =
     | DivisibleBy 5 -> "Buzz" 
     | i -> string i
 ```
+
+## Functions
+
+Useful functions for daily usage
+
+### Mapping Functions
+
+```fsharp
+///Map - shape items from one collection into another collection
+// [2; 4; 6; 8; 10; 12; 14; 16; 18; 20]
+[1 .. 10] |> List.map (fun n -> n * 2)
+
+type Person = { Name : string; Town : string }
+
+let persons =
+    [
+        { Name = "Isaak"; Town = "London" }
+        { Name = "Sara"; Town = "Birmingham" }
+        { Name = "Tim"; Town = "London" }
+        { Name = "Michelle"; Town = "Manchester" }
+    ]
+
+// ["London"; "Birmingham"; "London"; "Manchester"]
+persons |> List.map (fun person -> person.Town)
+
+///Map2, Map3 - Map for multiple lists
+let list1 = [1; 2; 3]
+let list2 = [4; 5; 6]
+let list3 = [7; 8; 9]
+
+// [5; 7; 9]
+(list1, list2) ||> List.map2 (fun x y -> x + y)
+
+// [12; 15; 18]
+(list1, list2, list3) |||> List.map3 (fun x y z -> x + y + z) 
+
+///Mapi - Map and include the index
+let list1 = [9; 12; 53; 24; 35]
+
+// [(0, 9); (1, 12); (2, 53); (3, 24); (4, 35)]
+list1 |> List.mapi (fun x i -> (x, i))
+
+// [9; 13; 55; 27; 39]
+list1 |> List.mapi (fun x i -> x + i)
+
+let list1 = [9; 12; 3]
+let list2 = [24; 5; 2]
+
+// [0; 17; 10]
+(list1, list2) ||> List.mapi2 (fun i x y -> (x + y) * i) 
+```
+
