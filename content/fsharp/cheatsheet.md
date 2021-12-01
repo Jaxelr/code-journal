@@ -528,3 +528,79 @@ let list2 = [24; 5; 2]
 (list1, list2) ||> List.mapi2 (fun i x y -> (x + y) * i) 
 ```
 
+```fsharp
+///indexed - return the collection along with the index position of each element
+let list1 = [23; 5; 12]
+
+// [(0, 23); (1, 5); (2, 12)]
+let result = list1 |> Array.indexed
+```
+
+```fsharp
+///iter - apply a unit returning function over each element
+let list1 = [1; 2; 3]
+let list2 = [4; 5; 6]
+
+// Prints: 1; 2; 3; 
+list1 |> List.iter (fun x -> printf "%d; " x)
+
+// Prints: (1 4); (2 5); (3 6);
+(list1, list2) ||> List.iter2 (fun x y -> printf "(%d %d); " x y)
+
+// Prints: ([0] = 1); ([1] = 2); ([2] = 3);
+list1 |> List.iteri (fun i x -> printf "([%d] = %d); " i x)
+
+// Prints: ([0] = 1 4); ([1] = 2 5); ([2] = 3 6);
+(list1, list2) ||> List.iteri2 (fun i x y -> printf "([%d] = %d %d); " i x y) 
+```
+
+```fsharp 
+///collect - apply a function to each element then collect them into a new collection
+
+// [0; 1; 0; 1; 2; 3; 4; 5; 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
+let list1 = [1; 5; 10]
+let list2 = [1; 2; 3]
+
+list1 |> List.collect (fun elem -> [0 .. elem])
+
+// [1; 2; 3; 2; 4; 6; 3; 6; 9]
+list2 |> List.collect (fun x -> [for i in 1..3 -> x * i])
+
+// Example 3
+type Customer =
+    {
+        Id: int
+        OrderId: int list
+    }
+
+let c1 = { Id = 1; OrderId = [1; 2]}
+let c2 = { Id = 2; OrderId = [43]}
+let c3 = { Id = 5; OrderId = [39; 56]}
+let customers = [c1; c2; c3]
+
+// [1; 2; 43; 39; 56]
+let orders = customers |> List.collect(fun c -> c.OrderId)
+```
+
+```fsharp
+///pairwise - returns a new list of tuples of adjacent items
+let list1 = [1; 30; 12; 20]
+
+//  [(1, 30); (30, 12); (12, 20)]
+list1 |> List.pairwise
+
+// [31.0; 11.0; 21.0]
+[ DateTime(2010,5,1)
+  DateTime(2010,6,1)
+  DateTime(2010,6,12)
+  DateTime(2010,7,3) ]
+|> List.pairwise
+|> List.map(fun (a, b) -> b - a)
+|> List.map(fun time -> time.TotalDays)
+```
+
+```fsharp
+///windowed - returns a list of sliding windows from the input list
+// [['a'; 'b'; 'c']; ['b'; 'c'; 'd']; ['c'; 'd'; 'e']]
+['a'..'e'] |> List.windowed 3
+```
