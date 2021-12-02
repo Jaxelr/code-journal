@@ -604,3 +604,80 @@ list1 |> List.pairwise
 // [['a'; 'b'; 'c']; ['b'; 'c'; 'd']; ['c'; 'd'; 'e']]
 ['a'..'e'] |> List.windowed 3
 ```
+
+### Grouping Functions
+
+```fsharp
+///groupby - the output is a collection of tuples
+type Person =
+    {
+        Name: string
+        Town: string
+    }
+
+let persons =
+    [ { Name = "Isaak"; Town = "London" }
+      { Name = "Sara"; Town = "Birnmingham" }
+      { Name = "Tim"; Town = "London" }
+      { Name = "Michelle"; Town = "Manchester" } ]
+
+// [("London", [{ Name = "Isaak"; Town = "London" }; { Name = "Tim"; Town = "London" }]);
+//  ("Birnmingham", [{ Name = "Sara"; Town = "Birnmingham" }]);
+//  ("Manchester", [{ Name = "Michelle"; Town = "Manchester" }])]
+persons |> List.groupBy (fun person -> person.Town)
+```
+
+```fsharp
+///countby - the output is a tuple with the field + the number of items on the collection
+type Person = { Name: string; Town: string }
+
+let persons =
+    [
+        { Name = "Isaak"; Town = "London" }
+        { Name = "Sara"; Town = "Birnmingham" }
+        { Name = "Tim"; Town = "London" }
+        { Name = "Michelle"; Town = "Manchester" }
+    ]
+
+// [("London", 2); ("Birnmingham", 1); ("Manchester", 1)]
+persons |> List.countBy (fun person -> person.Town)
+```
+
+```fsharp
+///partition - using the predicate return 2 lists
+// Tupled result in two lists
+let londonPersons, otherPersons =
+    persons |> List.partition(fun p -> p.Town = "London")
+```
+
+```fsharp
+///chunkBySize - group elements into chunks of n size
+let list1 = [33; 5; 16]
+
+// int list list = [[33; 5]; [16]]
+let chunkedLst = list1 |> List.chunkBySize 2
+```
+
+```fsharp
+///splitAt - split the collection into 2 parts on the index indicated
+
+let xs = [| 1; 2; 3; 4; 5 |]
+
+let left1, right1 = xs |> Array.splitAt 0   // [||] and [|1; 2; 3; 4; 5|]
+let left2, right2 = xs |> Array.splitAt 1   // [|1|] and [|2; 3; 4; 5|]
+let left3, right3 = xs |> Array.splitAt 5   // [|1; 2; 3; 4; 5|] and [||]
+let left4, right4 = xs |> Array.splitAt 6   // InvalidOperationException
+```
+
+```fsharp
+///splitInto - splits the collection into n of chunks
+// [[1; 2; 3; 4]; [5; 6; 7]; [8; 9; 10]]
+// note that the first chunk has four elements
+[1..10] |> List.splitInto 3
+
+// [[1; 2; 3]; [4; 5; 6]; [7; 8]; [9; 10]]
+[1..10] |> List.splitInto 4
+
+// [[1; 2]; [3; 4]; [5; 6]; [7; 8]; [9]; [10]]
+[1..10] |> List.splitInto 6
+```
