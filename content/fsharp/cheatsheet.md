@@ -681,3 +681,219 @@ let left4, right4 = xs |> Array.splitAt 6   // InvalidOperationException
 // [[1; 2]; [3; 4]; [5; 6]; [7; 8]; [9]; [10]]
 [1..10] |> List.splitInto 6
 ```
+
+### Aggregate Functions
+
+```fsharp
+let numbers = [1.0 .. 10.0]
+
+let total = numbers |> List.sum         // 55.0
+let average = numbers |> List.average   // 5.5
+let max = numbers |> List.max           // 10.0
+let min = numbers |> List.min           // 1.0
+```
+
+### Other Functions
+
+```fsharp
+///Find - finds the first element that matches a condition
+let isDivisibleBy number elem = elem % number = 0
+
+let input = [1 .. 10]
+
+input |> List.find (isDivisibleBy 5)    // 5
+input |> List.find (isDivisibleBy 11)   // KeyNotFoundException
+```
+
+```fsharp
+/// findBack - finds the last element that matches a condition
+let isDivisibleBy number elem = elem % number = 0
+
+let input = [1 .. 10]
+
+input |> List.findBack (isDivisibleBy 4)    // 8
+input |> List.findBack (isDivisibleBy 11)   // KeyNotFoundException
+```
+
+```fsharp
+///findIndex - finds the first index that matches a condition
+let isDivisibleBy number elem = elem % number = 0
+
+let input = [1 .. 10]
+
+input |> List.findIndex (isDivisibleBy 5)   // 4
+input |> List.findIndex (isDivisibleBy 11)  // KeyNotFoundException
+```
+
+```fsharp
+let isDivisibleBy number elem = elem % number = 0
+
+let input = [1..10]
+
+input |> List.findIndexBack (isDivisibleBy 3)   // 8
+input |> List.findIndexBack (isDivisibleBy 11)  // KeyNotFoundException
+```
+
+```fsharp
+/// returns the first (head), last (last) and all but first item (tail) functions
+let input = [15..22]
+
+input |> List.head    // 15
+input |> List.last    // 22
+input |> List.tail    // [16; 17; 18; 19; 20; 21; 22]
+```
+
+```fsharp
+///item - gets the element at a given index
+let input = [1..7]
+
+input |> List.item 5      // 6
+input |> List.item 8      // ArgumentException
+```
+
+```fsharp
+///take - returns the elements up to the specified count
+let input = [1..10]
+
+input |> List.take 5        // [1; 2; 3; 4; 5]
+input |> List.take 11       // InvalidOperationException
+```
+
+```fsharp
+///truncate - returns at most N elements
+let input = [1..10]
+
+input |> List.truncate 5    // [1; 2; 3; 4; 5]
+input |> List.truncate 11   // [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
+```
+
+```fsharp
+///takeWhile - give me items until the criteria isnt met
+let input = [1..10]
+
+input |> List.takeWhile (fun x -> x / 7 = 0)   // [1; 2; 3; 4; 5; 6]
+input |> List.takeWhile (fun x -> x / 17 = 0)     // [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
+```
+
+```fsharp
+///skipWhile - skips elements until the predicate is true
+let mySeq = seq { for i in 1 .. 10 -> i * i }    // 1 4 9 16 25 36 49 64 81 100
+
+mySeq |> Seq.skipWhile (fun elem -> elem < 10)   // 16 25 36 49 64 81 100
+mySeq |> Seq.skipWhile (fun elem -> elem < 101)  // Empty seq
+```
+
+```fsharp
+///exists - tests if any element satisfies a predicate
+let inputs = [0..3]
+
+inputs |> List.exists (fun elem -> elem = 3)      // true
+inputs |> List.exists (fun elem -> elem = 10)     // false
+```
+
+```fsharp
+///exists2 - tests the pair of elements of each list to satisfy the predicate
+/// The collections must have equal lengths, except for Seq where extra elements are ignored.
+let list1to5 = [1 .. 5]           // [1; 2; 3; 4; 5]
+let list0to4 = [0 .. 4]           // [0; 1; 2; 3; 4]
+let list5to1 = [5 .. -1 .. 1]     // [5; 4; 3; 2; 1]
+let list6to1 = [6 .. -1 .. 1]     // [6; 5; 4; 3; 2; 1]
+
+(list1to5, list5to1) ||> List.exists2 (fun i1 i2 -> i1 = i2)    // true
+(list1to5, list0to4) ||> List.exists2 (fun i1 i2 -> i1 = i2)    // false
+(list1to5, list6to1) ||> List.exists2 (fun i1 i2 -> i1 = i2)    // ArgumentException
+```
+
+```fsharp
+///forall - tests all elements on the predicate
+let inputs = [2; 4; 6; 8; 10]
+
+inputs |> List.forall (fun i -> i % 2 = 0)    // true
+inputs |> List.forall (fun i -> i % 2 = 0)    // false
+```
+```fsharp
+///forall2 - tests the elements of the predicate pairwise 
+let lst1 = [0; 1; 2]
+let lst2 = [0; 1; 2]
+let lst3 = [2; 1; 0]
+let lst4 = [0; 1; 2; 3]
+
+(lst1, lst2) ||> List.forall2 (fun i1 i2 -> i1 = i2)    // true
+(lst1, lst3) ||> List.forall2 (fun i1 i2 -> i1 = i2)    // false
+(lst1, lst4) ||> List.forall2 (fun i1 i2 -> i1 = i2)    // ArgumentException
+```
+
+```fsharp
+///contains - returns true if a collection contains the item
+let rushSet = ["Dirk"; "Lerxst"; "Pratt"]
+let gotSet = rushSet |> List.contains "Lerxst"      // true
+```
+
+```fsharp
+///filter, where - returns a new collection with the elements satisfied by the predicate
+let data =
+    [("Cats",4)
+     ("Tiger",5)
+     ("Mice",3)
+     ("Elephants",2) ]
+
+// [("Cats", 4); ("Mice", 3)]
+data |> List.filter (fun (nm, x) -> nm.Length <= 4)
+data |> List.where (fun (nm, x) -> nm.Length <= 4)
+```
+
+```fsharp
+///length - length of the collection
+[ 1 .. 100 ] |> List.length         // 100
+[ ] |> List.length                  // 0
+[ 1 .. 2 .. 100 ] |> List.length    // 50
+```
+
+```fsharp
+///distinctBy - using the keys returned by the projection returns no duplicate entries
+let inputs = [-5 .. 10]
+
+// [-5; -4; -3; -2; -1; 0; 6; 7; 8; 9; 10]
+inputs  |> List.distinctBy (fun i -> abs i)
+```
+
+```fsharp
+///distinct - returns a collection that contains no dupes acording to equality comparisons
+[1; 3; 9; 4; 3; 1] |> List.distinct    // [1; 3; 9; 4]
+[1; 1; 1; 1; 1; 1] |> List.distinct     // [1]
+[ ] |> List.distinct                    // error FS0030: Value restriction
+```
+
+```fsharp
+///sortBy - sorts using keys given by the projection
+[1; 4; 8; -2; 5] |> List.sortBy (fun x -> abs x)    // [1; -2; 4; 5; 8]
+```
+
+```fsharp
+///sort - using Operators.compare
+[1; 4; 8; -2; 5] |> List.sort    // [-2; 1; 4; 5; 8] 
+```
+
+```fsharp
+///sortByDescending - sorts descending using keys given by the projection
+[-3..3] |> List.sortByDescending (fun x -> abs x)   // [-3; 3; -2; 2; -1; 1; 0]
+```
+
+```fsharp
+///sortDescending - self explanatory
+[0..5] |> List.sortDescending    // [5; 4; 3; 2; 1; 0]
+```
+
+```fsharp
+///sortWith - sorts using the function provider as predicate
+let lst = ["<>"; "&"; "&&"; "&&&"; "<"; ">"; "|"; "||"; "|||"]
+
+let sortFunction (str1: string) (str2: string) =
+    if (str1.Length > str2.Length) then
+        1
+    else
+        -1
+
+// ["|"; ">"; "<"; "&"; "||"; "&&"; "<>"; "|||"; "&&&"]
+lst |> List.sortWith sortFunction
+```
