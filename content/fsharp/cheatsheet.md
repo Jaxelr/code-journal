@@ -897,3 +897,74 @@ let sortFunction (str1: string) (str2: string) =
 // ["|"; ">"; "<"; "&"; "||"; "&&"; "<>"; "|||"; "&&&"]
 lst |> List.sortWith sortFunction
 ```
+
+```fsharp
+///allPairs - takes 2 collections and returns all possible pair of elements
+let arr1 = [| 0; 1 |]
+let arr2 = [| 4; 5 |]
+
+(arr1, arr2) ||> Array.allPairs arr1 arr2    // [|(0, 4); (0, 5); (1, 4); (1, 5)|]
+```
+
+```fsharp
+///append - combine 2 collections into 1
+let list1 = [33; 5; 16]
+let list2 = [42; 23; 18]
+
+List.append list1 list2     // [33; 5; 16; 42; 23; 18]
+```
+
+```fsharp
+///averageBy - takes a func and uses it to calculate an average
+// val avg1 : float = 2.0
+[1..3] |> List.averageBy (fun elem -> float elem)
+
+// val avg2 : float = 4.666666667
+[| 1..3 |] |> Array.averageBy (fun elem -> float (elem * elem))
+```
+
+```fsharp
+///choose - select and transform elements at the same time
+let list1 = [33; 5; 16]
+
+// [34; 6; 17]
+list1 |> List.choose (fun elem -> Some(elem + 1))
+```
+
+```fsharp
+///compareWith - compare 2 collections and stops when it encounters the first unequal pair
+let sq1 = seq { 1; 2; 4; 5; 7 }
+let sq2 = seq { 1; 2; 3; 5; 8 }
+let sq3 = seq { 1; 3; 3; 5; 2 }
+
+let compareSeq seq1 seq2 =
+    (seq1, seq2 ||> Seq.compareWith (fun e1 e2 ->
+        if e1 > e2 then 1
+        elif e1 < e2 then -1
+        else 0)
+
+let compareResult1 = compareSeq sq1 sq2     // int = 1
+let compareResult2 = compareSeq sq2 sq3     // int = -1
+```
+
+```fsharp
+///concat - join n number of collections
+// int list = [1; 2; 3; 4; 5; 6; 7; 8; 9]
+List.concat [[1; 2; 3]; [4; 5; 6]; [7; 8; 9]]
+```
+
+```fsharp
+///Array.copy - creates new array that contains the elements of an existing array
+/// The copy is a shallow copy, elements using reference, only the reference is copied.
+let firstArray : StringBuilder array = Array.init 3 (fun index -> new StringBuilder(""))
+let secondArray = Array.copy firstArray
+// Two arrays: [|; ; |]
+
+firstArray.[0] <- new StringBuilder("Test1")
+// firstArray: [|Test1; ; |]
+// secondArray: [|; ; |]
+
+firstArray.[1].Insert(0, "Test2") |> ignore
+// firstArray: [|Test1; Test2; |]
+// secondArray: [|; Test2; |]
+```
