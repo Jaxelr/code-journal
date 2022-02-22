@@ -8,6 +8,6 @@
 - [Command Line](content/cmd/index.md)
 - [CI](content/ci/index.md)
 - [Git](content/git/index.md)
-- [Npm](content/npm/index.md)
+- [javascript](content/javascript/index.md)
 - [SqlServer](content/sqlserver/index.md)
 - [FSharp](content/fsharp/index.md)
