@@ -2,7 +2,7 @@
 
 This is used to investigate, on some instances turning on in prod can be risky.
 
-## Sql Server 2019
+## Sql Server 2019 or later
 
 Simply run:
 
