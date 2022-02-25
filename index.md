@@ -5,7 +5,7 @@
 - [Dotnet](content/dotnet/index.md)
 - [Docker](content/docker/index.md)
 - [Windows](content/windows/index.md)
-- [Command Line](content/cmd/index.md)
+- [Shell Commands](content/shells/index.md)
 - [CI](content/ci/index.md)
 - [Git](content/git/index.md)
 - [javascript](content/javascript/index.md)
