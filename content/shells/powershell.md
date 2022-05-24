@@ -1,8 +1,8 @@
-# Shells
+# Powershell
 
 Index of snippets and commands that are useful for day to day troubleshooting:
 
-## Powershell
+## Commands
 
 - Restart remote computer - [Restart-Computer](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/restart-computer?view=powershell-7.1)
 - Count files in a path (recursively) `(Get-ChildItem -File -Recurse -Filter *.rdl | Measure-Object).Count`
