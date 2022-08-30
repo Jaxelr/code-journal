@@ -37,6 +37,7 @@ Index of commands related to the azure cloud shell.
 
 - Access Policy to secrets: `Set-AzKeyVaultAccessPolicy -VaultName "{name}" -UserPrincipalName {principal} -PermissionsToSecrets recover,purge`
 - Get secret: `Get-AzKeyVaultSecret -VaultName "{name}"`
+- Get secret as text: `Get-AzKeyVaultSecret -VaultName "{name}" -AsPlainText`
 - Get secret in soft delete state: `Get-AzKeyVaultSecret -VaultName "{name}" -InRemovedState`
 - Restore secret in deleted state: `Undo-AzKeyVaultSecretRemoval -VaultName "{name}" -Name "{secretname]"`
 - Remove secret: `Remove-AzKeyVaultSecret -VaultName "{name}" -Name "{secretname]"`
