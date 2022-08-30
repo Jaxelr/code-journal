@@ -44,5 +44,6 @@ Index of commands related to the azure cloud shell.
 
 #### Troubleshooting
 
-- If you get an error like `Operation returned an invalid status code 'Forbidden'. Public network access is disabled`, you need to enable networking access for the Azure Cloud Shell.
+- If you get an error like `Operation returned an invalid status code 'Forbidden'. Public network access is disabled`, you need to enable networking access for the Azure Cloud Shell. First, you will need to find out your ip from cloud shell by running `curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
+` next you will need to allow list that ip.
 - If you get an error like `Client address is not authorized and caller is not a trusted service'`, make sure your ip is allowlisted.
