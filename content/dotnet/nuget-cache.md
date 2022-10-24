@@ -8,4 +8,4 @@ Or using the nuget cli:
 
 `nuget locals all -clear`
 
-The cache locaiton should be here `%userprofile%\.nuget\packages`
+The cache location should be here `%userprofile%\.nuget\packages`
