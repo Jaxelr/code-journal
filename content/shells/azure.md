@@ -23,6 +23,26 @@ Index of commands related to the azure cloud shell.
 - Restore certificate in deleted state: `Undo-AzKeyVaultCertificateRemoval -VaultName "{name}" -Name "{certname}"`
 - Remove certificate: `Remove-AzKeyVaultCertificate -VaultName "{name}" -Name "{certname}"`
 - Remove certificate in soft delete state: `Remove-AzKeyVaultCertificate -VaultName "{name}" -Name "{certname}" -InRemovedState`
+- Export certificate from vault:  
+
+```powershell
+$cert = Get-AzKeyVaultCertificate -VaultName "{name}" -Name "{certname}"
+$secret = Get-AzKeyVaultSecret -VaultName "{name}" -Name $cert.Name
+$secretValueText = '';
+$ssPtr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secret.SecretValue)
+try {
+    $secretValueText = [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($ssPtr)
+} finally {
+    [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($ssPtr)
+}
+$secretByte = [Convert]::FromBase64String($secretValueText)
+$x509Cert = new-object System.Security.Cryptography.X509Certificates.X509Certificate2($secretByte,'','Exportable,PersistKeySet')
+$type = [System.Security.Cryptography.X509Certificates.X509ContentType]::Pfx
+$pfxFileByte = $x509Cert.Export($type, $password)
+
+# Write to file
+[System.IO.File]::WriteAllBytes("{certname}.pfx", $pfxFileByte)
+```
 
 ### Keys
 
