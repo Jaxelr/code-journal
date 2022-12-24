@@ -4,8 +4,7 @@ Index of commands related to the azure cloud shell.
 
 ## Commands
 
-
-## Key Vaults
+## AKV
 
 ### Keyvault
 
@@ -68,3 +67,12 @@ $pfxFileByte = $x509Cert.Export($type, $password)
 - If you get an error like `Operation returned an invalid status code 'Forbidden'. Public network access is disabled`, you need to enable networking access for the Azure Cloud Shell. First, you will need to find out your ip from cloud shell by running `curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
 ` next you will need to allow list that ip.
 - If you get an error like `Client address is not authorized and caller is not a trusted service'`, make sure your ip is allowlisted.
+
+## Blob Storage
+
+### Storage Account
+
+- Get storage account info: `Get-AzStorageAccount -ResourceGroupName "{rg}" -Name "{name}"`
+- Get storage blob info: `Get-AzStorageBlob -Container "{container}" -Blob "{blob}" $Storage.Context`
+- Remove storage blob info: `Remove-AzStorageBlob -Container "{container}" -Blob "{blob}" $Storage.Context`
+- Download storage blob content: `(Get-AzStorageBlob -Container "{container}" -Blob "{blob}" $Storage.Context).ICloubBlob.DownloadText()`
