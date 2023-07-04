@@ -1,4 +1,4 @@
-# Azure Cloud Shell Commands
+# Azure Cloud Shell commands
 
 Index of commands related to the azure cloud shell.
 

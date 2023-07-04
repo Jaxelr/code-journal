@@ -2,3 +2,4 @@
 
 - [Powershell](powershell.md)
 - [Azure](azure.md)
+- [Bash](bash.md)

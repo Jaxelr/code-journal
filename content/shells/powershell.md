@@ -1,4 +1,4 @@
-# Powershell
+# Powershell commands
 
 Index of snippets and commands that are useful for day to day troubleshooting:
 
