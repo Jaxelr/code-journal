@@ -7,6 +7,7 @@
 - Count commits for a given date: git shortlog -sne --author="\(Name\)" --after="01 Jan 2022" --before="22 Oct 2022"
 For more snippets, check my [dotfiles](https://github.com/Jaxelr/dotfiles/blob/master/git/.gitconfig.aliases)
 - Create an empty commit with a message: `git commit --allow-empty -m "message"`
+- Count commits per user: `git shortlog --summary --numbered --all --no-merges`
 
 ## Git notes
 
