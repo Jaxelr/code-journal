@@ -1,6 +1,6 @@
-# Azure Cloud Shell commands
+# Azure Powershell commands
 
-Index of commands related to the azure cloud shell.
+Index of commands related to the azure powershell.
 
 ## Commands
 
