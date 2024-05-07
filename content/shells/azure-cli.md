@@ -13,9 +13,11 @@ Index of commands related to the azure cli.
 ### Container
 
 - Create container: `az cosmosdb sql container create --account-name "{account}" --database-name "{database}" --name "{container}" --partition-key-path "/{partitionKey} --resource-group "{resourceGroup}"`
+- Grant read-write role `az cosmosdb sql role assignment create --account-name "{account}" --resource-group "{resourceGroup}"  --scope "/" --principal-id {principal} --role-definition-id {role-id}`
+- To find the role definition that exists on the cosmos: `az cosmosdb sql role definition list --account-name "{account}" --resource-group "{resourceGroup}"`
 
 ## Frontdoor
 
 ### Route 
 
-- Update route: `az afd route update -g {resourceGroup} --profile-name {profile} --endpoint-name {endpoint} --name {route-name} --origin-group {origin-group}`
+- Update route: `az afd route update -g {resourceGroup} --profile-name {profile} --endpoint-name {endpoint} --name {route-name} --origin-group {origin-group} `
