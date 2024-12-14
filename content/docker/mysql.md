@@ -9,7 +9,6 @@ _Optionally_ you can set a password, by default since this is local work i do no
 The definition for usage with docker compose is:
 
 ```yml
-version: '3'
 services:
 
   mysql:

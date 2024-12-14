@@ -7,7 +7,6 @@ Make sure docker desktop is running, from the cmd line run:
 The definition usage with docker compose is:
 
 ```yml
-version: '3'
 services:
 
   sqlserver:

@@ -9,13 +9,12 @@ From the cmd line run:
 _Optionally_ you can use a yml configuration file:
 
 ```yml
-version: '3'
 services:
 
   postgres:
     # For more details on configuring the Postgres Docker image, see:
     #   https://hub.docker.com/_/postgres/
-    image: postgres:12.4-alpine
+    image: postgres:13-alpine
 
     # Expose the default Postgres port on localhost
     ports:
@@ -25,7 +24,7 @@ services:
 
     environment:
       POSTGRES_USER: 'postgres'
-      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_PASSWORD: 'Password12'
       POSTGRES_DB: 'postgres'
 
     # Optional: Copy files from initdb path into the image so that they will be run on boot

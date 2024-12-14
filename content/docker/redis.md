@@ -9,7 +9,6 @@ From the cmd line run:
 Optionally using a yml configuration file:
 
 ```yml
-version: '3'
 services:
 
   redis:
