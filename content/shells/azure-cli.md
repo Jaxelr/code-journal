@@ -21,3 +21,10 @@ Index of commands related to the azure cli.
 ### Route 
 
 - Update route: `az afd route update -g {resourceGroup} --profile-name {profile} --endpoint-name {endpoint} --name {route-name} --origin-group {origin-group} `
+
+## AKV
+
+### Certificate
+
+- Show certificate: `az keyvault certificate show --vault-name "{vault}" --name "{certificate}"`
+- Get certificate: `az keyvault certificate download --vault-name "{vault}" --name "{certificate}" --file "{file}.cer"`
