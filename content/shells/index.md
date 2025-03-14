@@ -5,3 +5,4 @@
     - [Cli](azure-cli.md)
     - [Powershell](azure-powershell.md)
 - [Bash](bash.md)
+- [Wsl](wsl.md)
