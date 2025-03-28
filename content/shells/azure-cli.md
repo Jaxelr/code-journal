@@ -28,3 +28,9 @@ Index of commands related to the azure cli.
 
 - Show certificate: `az keyvault certificate show --vault-name "{vault}" --name "{certificate}"`
 - Get certificate: `az keyvault certificate download --vault-name "{vault}" --name "{certificate}" --file "{file}.cer"`
+
+### Secrets
+
+- List secrets: `az keyvault secret list --vault-name "{vault}"`
+- Show secrets: `az keyvault secret show --vault-name "{vault}" --name "{secret}"`
+- Get Secret value: `az keyvault secret show --vault-name "{vault}" --name "{secret}" --query value -o tsv`
