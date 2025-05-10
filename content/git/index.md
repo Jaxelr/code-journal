@@ -16,3 +16,11 @@ Notes do not modify Commits, Tags, or Trees. They are separate objects that can 
 - Add notes to a commit: `git notes add -m "{message}`
 - Show notes of a commit: `git notes show {commit}` if left empty, it takes the HEAD commit
 - Remove notes of a commit: `git notes remove {commit}` if left empty, it takes the HEAD commit
+
+## Git find old branches
+
+This command finds old branches that have not been updated in the last 6 months.
+
+``` bash
+git for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:iso8601)' refs/remotes | awk -v date="$(date -d '6 months ago' +%s)" '{ cmd = "date -d \"" $2 "\" +%s"; cmd | getline commit_date; close(cmd); if (commit_date < date) print $1 }'
+```
